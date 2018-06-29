@@ -1,0 +1,7 @@
+{
+  "name": "thumbnail",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "stevenhao <stevenhao@gmail.com>",
+  "license": "MIT"
+}
