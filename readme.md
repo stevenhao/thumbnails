@@ -11,4 +11,5 @@ Work in progress.
 ii. Pages should be something like /b/2.png. If your iphone isn't the same dimensions as the default, you may need to mess with the constants in `graphics.js`.
 
 3. Add each page to home screen (http://inspirelle.com/add-websites-home-screen-iphone-ipad/)
-asically, open a tunnel (using something like https://ngrok.com/) 
+
+It may help to open a tunnel to your local server (using something like https://ngrok.com/) 
