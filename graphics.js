@@ -14,13 +14,22 @@ const targetWidth = paddingW + w * C;
 const targetHeight = paddingH + h * R + extraBottom;
 const aspectRatio = targetHeight / targetWidth;
 
+const cache = {};
 
 export default (imgSrc, idx, cbk) => {
+  const key = `abc-${idx}`;
+  if (key in cache) {
+    const path = cache[key];
+    cbk(path);
+    return;
+  }
+
+  const path = `/tmp/img/${key}.png`;
   idx = parseInt(idx) - 1;
   const y = Math.floor(idx / C);
   const x = idx % C;
 
-  if (Number.isNaN(x) || Number.isNaN(y) || x < 0 || y < 0 || x >= R || y >= C) {
+  if (Number.isNaN(x) || Number.isNaN(y) || x < 0 || y < 0 || x >= C || y >= R) {
     throw new Error(`Invalid Index: ${idx}`);
   }
   console.log({x,y});
@@ -40,17 +49,19 @@ export default (imgSrc, idx, cbk) => {
         targetWidth,
         targetHeight,
         '^')
+      // .modulate(90, 80)
       .crop(
         iconW,
         iconH,
         paddingW + x * w,
         paddingH + y * h)
-      .write('/tmp/img/b.png', (err) => {
+      .write(path, (err) => {
         if (err) {
           console.log('err', err);
         }
         console.log('written');
-        cbk();
+        cache[key] = path;
+        cbk(path);
       });
   });
 };

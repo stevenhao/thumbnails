@@ -24,15 +24,15 @@ app.get('/page/:pid/:id', (req, res) => {
     : `<a href="/page/${pid}/${parseInt(id)+1}">Next</a><br/><img src="${img}"/>`;
   res.send(template({
     body,
-    title: `${id} of ${total}`,
+    title: '&zwj;',
     icon: img,
   }));
 });
 
 app.get('/img/:pid/:id.png', (req, res) => {
   const idx = req.params.id;
-  graphics('/tmp/img/a.png', idx, () => {
-    res.sendFile('/tmp/img/b.png');
+  graphics('/tmp/img/e.png', idx, (path) => {
+    res.sendFile(path);
   })
 });
 app.listen(process.env.PORT || 3001);
